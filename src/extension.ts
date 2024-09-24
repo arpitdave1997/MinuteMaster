@@ -49,7 +49,7 @@ async function generateDocstring(methodCode: string, format: string): Promise<st
   try {
     const prompt = `Generate docstring for the following method in the ${format} format.\n${methodCode}`
 
-    const genAI = new GoogleGenerativeAI('AIzaSyCZVe_MxBLknpSvVcvX1JG3TN1xEajt4Nc');
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '');
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
     
     const result = await model.generateContent(prompt);
